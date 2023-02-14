@@ -124,3 +124,32 @@ h1, h3 {
     font-weight: 500 !important;
     line-height: normal !important;
 }
+
+a {
+    color: black !important;
+    text-decoration: none;
+}
+
+#submit {
+    display: flex;
+    justify-content: end;
+}
+
+td, th{
+    border-style: solid !important;
+    border-color: black !important;
+    border-width: 2px !important;
+    text-align: initial;
+    padding:0.5rem !important;
+    height: 1rem !important;
+}
+
+section {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    padding: 1rem;
+
+    
+
+}
