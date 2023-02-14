@@ -1,0 +1,126 @@
+*{
+    box-sizing: border-box;
+}
+
+#logo {
+    width: 10rem;
+}
+
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-width: 0 0 2px 0;
+    border-style: solid;
+    border-color: #79BDFF;
+    min-height: 80px;
+    padding: 3rem;
+}
+
+
+header {
+  
+    background-color: rgb(236, 222, 222);
+    text-align: center;
+    padding: 2rem 0rem;
+    
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+}
+
+#category div{
+    display: flex;
+    flex-direction: row;
+    padding: 0.5rem;
+}
+
+label {
+    margin-left: 0.3rem;
+}
+#cards {
+    display: flex;
+    flex-direction: row;
+    padding: 1rem;
+}
+
+.card {
+    margin: 3rem;
+}
+
+.card-img-top {
+    padding: 1rem;
+   
+}
+
+h5, p {
+    text-align: center;
+}
+
+.footerCard {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0rem
+}
+
+.footerCard p{
+    margin: 1rem 0;
+}
+
+.btn-light {
+    border-style: solid;
+    border-color: black;
+   
+    padding: 1rem;
+}
+
+.footerCard a{
+    margin: 0;
+    border-style: solid;
+    border-color: black;
+    display: flex;
+    padding: 0rem 1rem;
+    margin: 1rem 0;
+
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    box-shadow: -5px -5px 10px
+}
+
+/* .boton{
+    border-style: solid;
+    border-color: black;
+    display: flex;
+    margin: 0;
+} */
+
+footer {
+    background-color: rgb(236, 222, 222);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+footer svg{
+    height: 5rem;
+    padding: 1rem;
+}
+
+#cohort {
+    padding: 1rem 4rem;
+   
+}
+
+h1, h3 {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    font-weight: 500 !important;
+    line-height: normal !important;
+}
