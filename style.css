@@ -144,7 +144,7 @@ td, th{
     height: 1rem !important;
 }
 
-section {
+.section {
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -229,7 +229,7 @@ nav img{
     flex-wrap: wrap;
 }
 
-section div{
+.section div{
     display: flex;
     flex-direction: column;
     justify-content: center;
