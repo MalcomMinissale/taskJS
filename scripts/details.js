@@ -1,3 +1,5 @@
+/* 
+
 var data = {
     "currentDate": "2022-01-01",
     "events": [
@@ -171,59 +173,40 @@ var data = {
       }
     ]
   };
-
-/*   let tituloCard = document.getElementsByClassName('card-title')
-  tituloCard = data.events[0].name
-  console.log(tituloCard)
- 
- 
- 
- 
-  console.log(data.events[0].price)
-
-  for(let i = 0;i < data.events.length; i++){
-    let element = data.events[i].name;
-    console.log(element)
-  }
   
-
- */
-
-
-
-
-
-// segundo intento
-
-  /* let tituloCard = document.getElementsByClassName('card-title')
-  tituloCard = data.events[0].name
-  console.log(tituloCard)
- 
- 
- 
- 
-  console.log(data.events[0].price)
-
-  for(let i = 0;i < data.events.length; i++){
-    let tituloCard = data.events[i].name;
-    console.log(tituloCard)
-  }
- */
-/* 
-  let titulosCard = document.getElementsByClassName('card-title')
   
-  console.log(titulosCard)
- 
- 
- 
- 
-  console.log(data.events[0].price)
+  
+  
+  
+  
+  
+  
+  
+  
+   */
+  console.log(data)
+  const queryString = location.search
 
-  for(let i = 0;i < data.events.length; i++){
-    let tituloCard = data.events[i].name;
-    console.log(tituloCard)
-  }
+const params = new URLSearchParams(queryString)
 
+const id = params.get("id")
+console.log(id)
 
+let eventos = data.events
 
- */
+let cardDetails = eventos.find(cardDetails => cardDetails._id == id)
+
+    
+let divDetails = document.querySelector(".section")
+
+divDetails.innerHTML = `
+<img src=${cardDetails.image} class="card-img-top">
+<div class="card-body">
+    <h5>${cardDetails.name}</h5>
+    <p>${cardDetails.description}</p>
+      <div class="footer-card">
+        <p>Price: $${cardDetails.price}</p>
+        <a href="./home.html">Volver al Inicio</a>
+      </div>
+</div>        
+`
