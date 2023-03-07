@@ -35,9 +35,15 @@ h1 {
 }
 
 #category div{
-    display: flex;
-    flex-direction: row;
+    display: flex !important;
+    flex-direction: row !important;
     padding: 0.5rem;
+}
+
+#category {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
 }
 
 label {

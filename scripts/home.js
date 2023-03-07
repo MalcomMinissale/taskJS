@@ -23,11 +23,40 @@ for(let i = 0;i < data.events.length; i++){
       sectionCards.appendChild(card);
     };
   
-    for(let i = 0; i < data.events.length; i++){
+   
       // console.log(data.events[i].category)
   
-  
-      let categories = data.events[i].category
-      console.log(categories)
-  
+    let categories = [];
+
+    for(let i = 0; i < data.events.length; i++){
+
+        
+        if(!categories.includes(data.events[i].category)){
+            categories.push(data.events[i].category)
+        }
     }
+
+        for(let i = 0;i < categories.length; i++){
+
+        let idCategories = document.getElementById("categories") 
+
+        let divCategory = document.createElement("div")
+
+        let eventCategory = `
+
+        <input type="checkbox" id="category${[i]}" name="category${[i]}" value="${[i]}">
+        <label for="category${[i]}">${categories[i]}</label>
+
+             
+        `;
+
+        divCategory.innerHTML += eventCategory
+
+        idCategories.appendChild(divCategory)
+
+        console.log(categories.indexOf)
+
+        
+        }
+
+  
