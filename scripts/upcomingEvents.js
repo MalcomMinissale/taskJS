@@ -238,16 +238,16 @@ var data = {
 
 
   let eventCard = `
-    <img src=${data.events[i].image} class="card-img-top">
-    <div class="card-body">
-        <h5>${data.events[i].name}</h5>
-        <p>${data.events[i].description}</p>
-          <div class="footer-card">
-            <p>Price: $${data.events[i].price}</p>
-            <a href="./details.html">Ver más</a>
-          </div>
-    </div>        
-    `;
+      <img src=${data.events[i].image} class="card-img-top">
+      <div class="card-body">
+          <h5>${data.events[i].name}</h5>
+         
+            <div class="footer-card">
+              <p>Price: $${data.events[i].price}</p>
+              <a href="./details.html?id=${data.events[i]._id}">Ver más</a>
+            </div>
+      </div>        
+      `;
 
 
     if (data.events[i].date > data.currentDate){
@@ -276,8 +276,8 @@ var data = {
 
         let eventCategory = `
 
-        <input type="checkbox" id="category${[i]}" name="category${[i]}" value="${[i]}">
-        <label for="category${[i]}">${categories[i]}</label>
+        <input type="checkbox" id="${categories[i]}" name="${categories[i]}" value="${categories[i]}">
+        <label for="${categories[i]}">${categories[i]}</label>
 
              
         `;
@@ -286,9 +286,110 @@ var data = {
 
         idCategories.appendChild(divCategory)
 
-        console.log(categories.indexOf)
+       
 
         
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const form2 = document.getElementById('form2')
+
+const input = document.getElementById('search2')
+
+input.addEventListener('click', handleClick)
+
+function handleClick(e){
+  console.log(e)
+  console.log({target : e.target})
+}
+
+
+
+
+console.log([form2])
+
+let busquedas = []
+
+form2.addEventListener('submit', (e)=> {
+  e.preventDefault()
+
+  console.log(input.value)
+  busquedas.push(input.value)
+  console.log(busquedas)
+})
+
   
+function crearLista(arr, contenedor){
+  let lista = document.querySelector(contenedor)
+
+    arr.forEach(item => {
+      let 
+      
+    });
+}
+
+
+
+
+
+
+
+
+
+const checkboxs2 = document.querySelectorAll("input[type='checkbox']")
+
+let checkboxs = document.getElementById("categories")
+
+checkboxs.addEventListener('click', handleClick)
+
+function handleClick(e){
+  console.log(e)
+  console.log({target : e.target})
+}
+
+console.log(checkboxs)
+
+/* checkboxs.forEach(checkbox => checkbox.addEventListener('change', mostrarCategory))
+
+function mostrarCategory(){
+  let seleccionado = Array.from(checkboxs).filter(checkbox => checkbox.checked)
+  console.log(seleccionado)
+  let arrayCategoriesFiltradas = filtrarCategories(categories, seleccionado.value)
+  console.log(arrayCategoriesFiltradas)
+}
+ */
+/* function filtrarCategories(categories, valor){ */
+
+  let eventos = data.events
+  console.log(eventos)
+
+  
+
+
+  let categoriesFiltradas = eventos.filter(evento => evento.category == checkboxs2.textContent)
+  
+  console.log(checkboxs2.textContent)
+  console.log(evento)
+  console.log(eventos.category)
+  console.log(categoriesFiltradas)
+ 
+/* } */

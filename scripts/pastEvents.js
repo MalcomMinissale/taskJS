@@ -236,16 +236,16 @@ var data = {
   card.classList = 'card';
 
   let eventCard = `
-    <img src=${data.events[i].image} class="card-img-top">
-    <div class="card-body">
-        <h5>${data.events[i].name}</h5>
-        <p>${data.events[i].description}</p>
-          <div class="footer-card">
-            <p>Price: $${data.events[i].price}</p>
-            <a href="./details.html">Ver más</a>
-          </div>
-    </div>        
-    `;
+      <img src=${data.events[i].image} class="card-img-top">
+      <div class="card-body">
+          <h5>${data.events[i].name}</h5>
+         
+            <div class="footer-card">
+              <p>Price: $${data.events[i].price}</p>
+              <a href="./details.html?id=${data.events[i]._id}">Ver más</a>
+            </div>
+      </div>        
+      `;
 
 
     if (data.events[i].date < data.currentDate){
