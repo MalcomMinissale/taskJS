@@ -385,11 +385,10 @@ function mostrarCategory(){
   
 
 
-  let categoriesFiltradas = eventos.filter(evento => evento.category == checkboxs2.textContent)
+  let categoriesFiltradas = eventos.filter(evento => category == evento.category)
   
-  console.log(checkboxs2.textContent)
-  console.log(evento)
-  console.log(eventos.category)
+ 
   console.log(categoriesFiltradas)
+  console.log(checkboxs2)
  
 /* } */
