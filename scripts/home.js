@@ -1,18 +1,15 @@
+function crearUnaTarjeta(arr, contenedor) {
+  let card = document.querySelector(contenedor);
 
-function crearUnaTarjeta(arr, contenedor){
+  card.innerHTML = "";
 
-let card = document.querySelector(".sectionCards")
-
-card.innerHTML = ""
-  
-for(let i = 0;i < data.events.length; i++){
-
+  for (let i = 0; i < data.events.length; i++) {
     let sectionCards = document.querySelector(".sectionCards");
-  
-    let card = document.createElement('div')
-    card.classList = 'card';
-  
-    let eventCard = `
+
+    let card = document.createElement("div");
+    card.classList = "card";
+
+    card.innerHTML += `
       <img src=${data.events[i].image} class="card-img-top">
       <div class="card-body">
           <h5>${data.events[i].name}</h5>
@@ -23,32 +20,30 @@ for(let i = 0;i < data.events.length; i++){
             </div>
       </div>        
       `;
-  
-      card.innerHTML += eventCard;
-  
-      sectionCards.appendChild(card);
-    };
+
+    console.log(card);
+    sectionCards.appendChild(card);
   }
-   
-      // console.log(data.events[i].category)
-  
-    let categories = [];
+}
+  crearUnaTarjeta(data.events, ".sectionCards");
+  /*   } */
 
-    for(let i = 0; i < data.events.length; i++){
+  // console.log(data.events[i].category)
 
-        
-        if(!categories.includes(data.events[i].category)){
-            categories.push(data.events[i].category)
-        }
+  let categories = [];
+
+  for (let i = 0; i < data.events.length; i++) {
+    if (!categories.includes(data.events[i].category)) {
+      categories.push(data.events[i].category);
     }
+  }
 
-        for(let i = 0;i < categories.length; i++){
+  for (let i = 0; i < categories.length; i++) {
+    let idCategories = document.getElementById("categories");
 
-        let idCategories = document.getElementById("categories") 
+    let divCategory = document.createElement("div");
 
-        let divCategory = document.createElement("div")
-
-        let eventCategory = `
+    let eventCategory = `
 
         <input type="checkbox" id="${categories[i]}" name="${categories[i]}" value="${categories[i]}">
         <label for="${categories[i]}">${categories[i]}</label>
@@ -56,47 +51,53 @@ for(let i = 0;i < data.events.length; i++){
              
         `;
 
-        divCategory.innerHTML += eventCategory
+    divCategory.innerHTML += eventCategory;
 
-        idCategories.appendChild(divCategory)
+    idCategories.appendChild(divCategory);
 
-        console.log(categories.indexOf)
+    console.log(categories.indexOf);
+  }
 
-        
-        }
-;
+
+
+  const checkboxs2 = document.querySelectorAll("input[type='checkbox']");
+
+  let arrayChecked = [];
+
+  checkboxs2.forEach((unNombre) =>
+    unNombre.addEventListener("click", function reconocerCheckbox(checkbox){
+      if (checkbox.target.checked){
+        arrayChecked.push(checkbox.target.value)
+        console.log(arrayChecked)
+      } else {
+        arrayChecked = arrayChecked.filter(categoria => categoria !== checkbox.target.value)
+        console.log(arrayChecked)
+      }
+    })
+  );
+
+
+
   
 
+ /*  function reconocerCheckbox() {
+    arrayChecked = [];
+  }
+  let arrCheckbox = Array.from(checkboxs2).filter((boton) => boton.checked);
+  for (const event of data.events) {
+    arrCheckbox.forEach((input) => {
+      if (event.category == input.value) {
+        arrayChecked.push(input.value);
+      }
+    });
+  }
+  if (arrayChecked.length > 0) {
+    crearUnaTarjeta(arrayChecked, ".sectionCards");
+  } else {
+    crearUnaTarjeta(data.events, ".sectionCards");
+  }
 
-
-
-const checkboxs2 = document.querySelectorAll("input[type='checkbox']");
-
-let arrayChecked = [];
-
-checkboxs2.forEach(unNombre => unNombre.addEventListener('change', unaFuncion))
-
-function unaFuncion(){
-  arrayChecked = []
- 
-}
-let arrCheckbox = Array.from(checkboxs2).filter(boton => boton.checked)
-for (const event of data.events){
-  arrCheckbox.forEach(input => {
-    if (event.category == input.value){
-      arrayChecked.push(input.value)
-      
-    }
-  })
-} if (arrayChecked.length > 0){
-    crearUnaTarjeta(arrayChecked, ".sectionCards")
-} else {
-    crearUnaTarjeta(data.events, ".sectionCards")
-}
-
-
-console.log(arrayChecked)
-
+  console.log(arrayChecked); */
 
 
 /* checkboxs2.forEach(item => {
@@ -129,8 +130,8 @@ console.log(arrayChecked)
 
 console.log(arrayChecked) 
 
- */ 
-  /*  (checkbox) => {
+ */
+/*  (checkbox) => {
     if (checkbox.checked){
       arrayChecked.push(checkbox.value)
     }
@@ -138,7 +139,6 @@ console.log(arrayChecked)
   console.log(arrayChecked)
 }
  */
-
 
 /* checkboxs.addEventListener('click', handleClick)
 
@@ -157,26 +157,6 @@ console.log(checkboxs2)
  console.log(arrayChecked)
 
  */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /* 
 

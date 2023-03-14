@@ -290,3 +290,41 @@ var data = {
         }
 
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let dataFromCheckbox
+
+const checkbox = document.getElementById('categories')
+
+let = arrayCheckbox = Array.from(checkbox)
+
+arrayCheckbox.addEventListener("change", dataCheckbox)
+function dataCheckbox (evento){
+  let checked = []
+  let checkboxes = evento.target().querySelectorAll('input[type=checkbox]')
+
+  for (let i = 0; i < checkboxes.length; i++){
+    if (checkboxes[i].checked){
+      checked.push(checkboxes[i].value)
+    }
+  }
+  return checked
+}
+console.log(dataFromCheckbox)
