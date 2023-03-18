@@ -42,7 +42,7 @@
     e.preventDefault()
     dataInput = input.value.trim().toLowerCase();
     let categoriasSeleccionadas = Array.from(checkboxs).filter(checkbox => checkbox.checked).map(checkbox => checkbox.value.toLowerCase());
-    let busquedaFiltrada = pastEvents.filter(function (evento){
+    let busquedaFiltrada = upcomingEvents.filter(function (evento){
       let filtroSearch = evento.name.toLowerCase().includes(dataInput) || evento.description.toLowerCase().includes(dataInput)
       let filtroCategorias = categoriasSeleccionadas.length == 0 || categoriasSeleccionadas.includes(evento.category.toLowerCase())
       console.log(filtroSearch)
