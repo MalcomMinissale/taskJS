@@ -4,11 +4,10 @@
   let eventos = data.events
   let categories = [];
   let pastEvents = []
-  const currentDate = new Date(data.currentDate)
+  const currentDate = data.currentDate
 
   eventos.forEach(event => {
-    const eventDate = new Date(event.date)
-    if (eventDate < currentDate){
+    if (event.date < currentDate){
       pastEvents.push(event)
     }
   })
