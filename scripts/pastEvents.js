@@ -6,7 +6,7 @@
   let pastEvents = []
   const currentDate = new Date(data.currentDate)
 
-  data.events.forEach(event => {
+  eventos.forEach(event => {
     const eventDate = new Date(event.date)
     if (eventDate < currentDate){
       pastEvents.push(event)
