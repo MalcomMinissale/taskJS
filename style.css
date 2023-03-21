@@ -19,6 +19,9 @@
     padding: 3rem;
 }
 
+body{
+    background: linear-gradient(90deg, rgb(169, 145, 185) 0%, rgb(194, 157, 157) 50%, rgb(186, 168, 144) 100%);
+}
 
 header {
   
@@ -61,7 +64,9 @@ label {
     display: flex !important;
     flex-wrap: wrap;
     flex-direction: row !important;
-    
+    background-color: rgb(236, 222, 222) !important;
+    border-color: black !important;
+    border-width: 0.1rem !important;
     padding: 1rem;
     margin: 3rem;
     width: 18rem;
@@ -70,6 +75,8 @@ label {
 .card-img-top {
     padding: 1rem;
     height: 10rem;
+    border-color: black !important;
+    border-width: 0.1rem !important;
    
 }
 
@@ -173,6 +180,7 @@ td, th{
     justify-content: center;
     flex-direction: column;
     padding: 1rem;
+    
 
     
 

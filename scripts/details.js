@@ -184,7 +184,19 @@ var data = {
   
   
    */
-  console.log(data)
+
+
+  const urlApi = "https://mindhub-xj03.onrender.com/api/amazing"
+let arrayApi
+let arrayEvents = []
+
+async function getDataApi(){
+  await fetch(urlApi)
+  .then(response => response.json())
+    .then (json => arrayApi = json)
+  arrayEvents = arrayApi.events
+
+  console.log(arrayApi)
   const queryString = location.search
 
 const params = new URLSearchParams(queryString)
@@ -192,7 +204,7 @@ const params = new URLSearchParams(queryString)
 const id = params.get("id")
 console.log(id)
 
-let eventos = data.events
+let eventos = arrayEvents
 
 let cardDetails = eventos.find(cardDetails => cardDetails._id == id)
 
@@ -210,3 +222,6 @@ divDetails.innerHTML = `
       </div>
 </div>        
 `
+}
+
+getDataApi()
