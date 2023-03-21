@@ -1,10 +1,23 @@
+const urlApi = "https://mindhub-xj03.onrender.com/api/amazing"
+let arrayApi
+let arrayEvents = []
+
+async function getDataApi(){
+  await fetch(urlApi)
+  .then(response => response.json())
+    .then (json => arrayApi = json)
+  arrayEvents = arrayApi.events
+
+  console.log(arrayApi)
+
+
 
   //-----------extracción dinámica de las categorías
   let sectionCards = document.querySelector(".sectionCards");
-  let eventos = data.events
+  let eventos = arrayEvents
   let categories = [];
   let pastEvents = []
-  const currentDate = data.currentDate
+  const currentDate = arrayApi.currentDate
 
   eventos.forEach(event => {
     if (event.date < currentDate){
@@ -12,9 +25,9 @@
     }
   })
 
-  for (let i = 0; i < data.events.length; i++) {
-    if (!categories.includes(data.events[i].category)) {
-      categories.push(data.events[i].category);
+  for (let i = 0; i < arrayEvents.length; i++) {
+    if (!categories.includes(arrayEvents[i].category)) {
+      categories.push(arrayEvents[i].category);
     }
   }
 
@@ -76,4 +89,5 @@ function crearUnaTarjeta(arr) {
     sectionCards.innerHTML = mostrar
    
   }
-  
+}
+  getDataApi()
