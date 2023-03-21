@@ -4,9 +4,12 @@ let arrayEvents = []
 let categories = []
 let eventsPast = []
 let eventsUpcoming = []
-let eventPastDetailed = [];
+let eventsPastDetailed = [];
 let eventsUpcomingDetailed = []
-
+let categoriasUpcoming = []
+let datosUpcoming = []
+let categoriasPast = []
+let datosPast = []
 
 async function getDataApi(){
   await fetch(urlApi)
@@ -19,9 +22,7 @@ async function getDataApi(){
   console.log(eventsPast)
   eventsUpcoming.push(...arrayEvents.filter(event=> event.date > arrayApi.currentDate))
  
-  
-
-  eventsPast.filter(event => eventPastDetailed.push(
+  eventsPast.filter(event => eventsPastDetailed.push(
       {
       percentage:((event.assistance*100) / event.capacity).toFixed(2),
       name:event.name, 
@@ -31,8 +32,6 @@ async function getDataApi(){
       price: event.price,
       revenues:event.assistance * event.price
   }))
-
-  console.log(eventPastDetailed)
 
   eventsUpcoming.filter(event => eventsUpcomingDetailed.push(
     {
@@ -49,9 +48,9 @@ console.log(eventsUpcomingDetailed);
 //-----------------------------------------------------------------
 
 function tablaEventStatistics(){
-    let masPorcentaje = getMasPorcentaje(eventPastDetailed)
-    let menosPorcentaje = getMenosPorcentaje(eventPastDetailed)
-    let masCapacidad = getMasCapacidad(eventPastDetailed)
+    let masPorcentaje = getMasPorcentaje(eventsPastDetailed)
+    let menosPorcentaje = getMenosPorcentaje(eventsPastDetailed)
+    let masCapacidad = getMasCapacidad(eventsPastDetailed)
     
     function getMasPorcentaje(eventos) {
      return eventos.reduce((acumulador, valorActual) => {
@@ -84,14 +83,13 @@ function tablaEventStatistics(){
 
 const renderTablaEventStatistics = `
     <tr>
-        <td>${masPorcentaje.name +" ("+ masPorcentaje.percentage}%)</td>
-        <td>${menosPorcentaje.name +" ("+ menosPorcentaje.percentage}%)</td>
-        <td>${masCapacidad.name +" ("+ masCapacidad.capacity})</td>
+        <td>${masPorcentaje.category + ": " + masPorcentaje.name +" ("+ masPorcentaje.percentage}%)</td>
+        <td>${menosPorcentaje.category + ": " + menosPorcentaje.name +" ("+ menosPorcentaje.percentage}%)</td>
+        <td>${masCapacidad.category + ": " + masCapacidad.name +" ("+ masCapacidad.capacity})</td>
     </tr>`
 
     document.getElementById("eventStatistics").innerHTML = renderTablaEventStatistics
 }
-
 
 tablaEventStatistics();
 
@@ -99,58 +97,49 @@ tablaEventStatistics();
 function tablaUpcomingEvents(){
  
   
-    for (let i = 0; i < arrayEvents.length; i++) {
-      if (!categories.includes(arrayEvents[i].category)) {
-        categories.push(arrayEvents[i].category);
+    for (let i = 0; i < eventsUpcomingDetailed.length; i++) {
+      if (!categories.includes(eventsUpcomingDetailed[i].category)) {
+        categories.push(eventsUpcomingDetailed[i].category);
       }
     }
-    console.log(categories); 
-
-
-    let categoriasUpcoming = []
-    let ingresosPorcentajes = []
-
+    
     categories.forEach(category => {
         categoriasUpcoming.push({
             categoria: category,
             data: eventsUpcomingDetailed.filter(datos => datos.category == category)
         })
     })
-    console.log(categoriasUpcoming)
 
     categoriasUpcoming.map(datos => {
-        ingresosPorcentajes.push({
+        datosUpcoming.push({
             category: datos.categoria,
-            estimate: datos.data.map(item => item.estimate),
-            capacity: datos.data.map(item => item.capacity),
-            estimateRevenue: datos.data.map(item => item.estimate * item.price)
+            estimate: datos.data.map(i => i.estimate),
+            capacity: datos.data.map(i => i.capacity),
+            estimateRevenue: datos.data.map(i => i.estimate * i.price)
         })
     })
-    console.log(ingresosPorcentajes)
 
-    ingresosPorcentajes.forEach(category => {
+    datosUpcoming.forEach(category => {
         let totalEstimate = 0
-        category.estimate.forEach(estimate => totalEstimate += Number(estimate))
+        category.estimate.forEach(estimate => totalEstimate += estimate)
         category.estimate = totalEstimate
 
         let totalCapacityUpcoming = 0
-        category.capacity.forEach(capacity => totalCapacityUpcoming += Number(capacity))
+        category.capacity.forEach(capacity => totalCapacityUpcoming += capacity)
         category.capacity = totalCapacityUpcoming
 
         let totalEstimateRevenue = 0
-        category.estimateRevenue.forEach(estimateRevenue => totalEstimateRevenue += Number(estimateRevenue))
+        category.estimateRevenue.forEach(estimateRevenue => totalEstimateRevenue += estimateRevenue)
         category.estimateRevenue = totalEstimateRevenue
 
+        console.log(totalEstimateRevenue)
+
         category.porcentajeAttendance = ((totalEstimate * 100) / totalCapacityUpcoming).toFixed(2)
-        })
+        })      
 
 let listaUpcoming = ""
-listaUpcoming = ingresosPorcentajes
+listaUpcoming = datosUpcoming.filter(item => item.porcentajeAttendance).sort((a,b) => b.porcentajeAttendance - a.porcentajeAttendance)
     
-    
-
-    console.log(listaUpcoming)
-
 let renderTablaUpcomingEvents = ""
 
 listaUpcoming.forEach(e => {
@@ -160,7 +149,8 @@ listaUpcoming.forEach(e => {
     <td>${e.category}</td>
     <td>US$ ${e.estimateRevenue}</td>
     <td>${e.porcentajeAttendance}%</td>
-  </tr>`
+    </tr>
+  `
 
     document.getElementById('eventsUpcoming').innerHTML = renderTablaUpcomingEvents
 })
@@ -168,36 +158,67 @@ listaUpcoming.forEach(e => {
 
 tablaUpcomingEvents()
 
+//--------------------------------------------------
 
+function tablaPastEvents(){
 
+    for (let i = 0; i < eventsPastDetailed.length; i++) {
+      if (!categories.includes(eventsPastDetailed[i].category)) {
+        categories.push(eventsPastDetailed[i].category);
+      }
+    }
 
-
-
-
-/*   nombresEventos = arrayApi.events.name
-  capacidadesEventos = arrayEvents.  */
-/* 
-  console.log(arrayEvents)
-
-  let tableBodyHTML1 = ""
-  let tableBodyHTML2 = ""
-  let tableBodyHTML3 =  */""
-
-/* categories.forEach(categoria => {
-    let filteredCategories = getEventosByCategories(eventos, categoria);
-    console.log(filteredCategories);
-})
-
-function getEventosByCategories(eventos, categoria){
-    return eventos.filter(evento => {
-        let eventosCategorias = evento.categories.map(item => item.categoria.name);
-        if (eventosCategorias.includes(categoria)){
-            return true
-        } else {
-            return false
-        }
+    categories.forEach(category => {
+        categoriasPast.push({
+            categoria: category,
+            data: eventsPastDetailed.filter(datos => datos.category == category)
+        })
     })
-} */
+
+    categoriasPast.map(datos => {
+        datosPast.push({
+            category: datos.categoria,
+            assistance: datos.data.map(i => i.assistance),
+            capacity: datos.data.map(i => i.capacity),
+            revenue: datos.data.map(i => i.assistance * i.price)
+        })
+    })
+    
+    datosPast.forEach(category => {
+        let totalAssistance = 0
+        category.assistance.forEach(assistance => totalAssistance += assistance)
+        category.assistance = totalAssistance
+
+        let totalCapacityPast = 0
+        category.capacity.forEach(capacity => totalCapacityPast += capacity)
+        category.capacity = totalCapacityPast
+
+        let totalRevenue = 0
+        category.revenue.forEach(revenue => totalRevenue += revenue)
+        category.revenue = totalRevenue
+        
+        category.porcentajeAttendance = ((totalAssistance * 100) / totalCapacityPast).toFixed(2)
+        })
+
+let listaPast = ""
+listaPast = datosPast.filter(item => item.porcentajeAttendance).sort((a,b) => b.porcentajeAttendance - a.porcentajeAttendance)
+let renderTablaPastEvents = ""
+
+listaPast.forEach(e => {
+    e.listaPast
+    renderTablaPastEvents += `
+    <tr>
+    <td>${e.category}</td>
+    <td>US$ ${e.revenue}</td>
+    <td>${e.porcentajeAttendance}%</td>
+    </tr>
+  `
+    document.getElementById('eventsPast').innerHTML = renderTablaPastEvents
+})
+}
+
+tablaPastEvents()
+
 }
 getDataApi()
 
